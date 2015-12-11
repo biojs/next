@@ -1,0 +1,58 @@
+[
+  {
+    "name": "x-bio-pv",
+    "link": "http://daviddao.github.io/x-bio-pv/components/x-bio-pv/",
+    "desc": "",
+    "thumb": "http://i.imgur.com/1cE2pDh.png",
+    "featured": true,
+    "i": 0
+  },
+  {
+    "name": "exelixis",
+    "link": "https://github.com/daviddao/exelixis",
+    "desc": "",
+    "thumb": "http://i.imgur.com/MFSMd7k.png",
+    "featured": true,
+    "i": 1
+  },
+  {
+    "name": "x-angularplasmid",
+    "link": "http://biojs.io/d/angularplasmid",
+    "desc": "",
+    "thumb": "http://i.imgur.com/FN9cOrR.png",
+    "featured": false,
+    "i": 2
+  },
+  {
+    "name": "x-muts-needle-plot",
+    "link": "http://daviddao.github.io/x-muts-needle-plot/components/x-muts-needle-plot/",
+    "desc": "",
+    "thumb": "http://i.imgur.com/UPPgUHM.png",
+    "featured": false,
+    "i": 3
+  },
+  {
+    "name": "x-drawrnajs",
+    "link": "http://daviddao.github.io/x-drawrnajs",
+    "desc": "",
+    "thumb": "http://i.imgur.com/V12HJy1.png",
+    "featured": false,
+    "i": 4
+  },
+  {
+    "name": "x-cyto-chromosome-vis",
+    "link": "http://linjoey.github.io/cyto-chromosome-vis/",
+    "desc": "",
+    "thumb": "http://i.imgur.com/VmvqHn5.png",
+    "featured": false,
+    "i": 5
+  },
+  {
+    "name": "x-inchlib",
+    "link": "http://biojs.io/d/biojs-vis-inchlib",
+    "desc": "",
+    "thumb": "http://i.imgur.com/jKYN3kx.png",
+    "featured": false,
+    "i": 6
+  }
+]

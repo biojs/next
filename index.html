@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BioJS next</title>
+
+  <link rel="stylesheet" href="index.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <main id="main" role="main">
+    <img src="biojs_64.png" style="height:38px;float:left;margin-right:10px"/><h1 class="title">Bio<span class="lighter">JS</span> <span style='font-size:25px'>next</span></h1>
+    <nav class="topnav">
+      <ul><!--
+      --><li><a href="#intro">introduction</a> / </li><!--
+      --><li><a href="http://biojs.io/">registry</a> / </li><!--
+      --><li><a href="#community">community</a> / </li><!--
+      --><li><a href="#">docs</a></li><!--
+    --></ul>
+    </nav>
+
+    <section class="intro">
+      BioJS next is an open software ecosystem for visualizing biological data on the web, built on top of
+      <a target="_blank" href="http://browserify.org">browserify</a>, <a target="_blank" href="https://www.polymer-project.org/1.0/">polymer</a> and
+      <a target="_blank" href="http://biojs.io">biojs</a>. Our vision is that &quot;<em>every online biological dataset in the world should be visualised with web components</em>&quot;. BioJS next follows the <a target="_blank" href="http://webcomponents.org/">web component standard</a>, which makes it easy for biologists to plug in next components into their website.
+    </section>
+
+    <section id="examples" class="examples">
+      <h2>next components</h2>
+      <ul class="thumbs thumbs-trio"></ul>
+    </section>
+
+    <section id="community" class="community">
+      <h2>community</h2>
+      <p>
+        Not sure where to start? Here's some links that should help you
+        learn more and/or get involved yourself. Feel free to get in touch
+        if you have any questions!
+      </p>
+      <ul>
+        <li>GitHub: <a href="http://github.com/biojs/next">github.com/biojs/next</a></li>
+      </ul>
+      <p>
+        BioJS next is only possible thanks to the excellent work of our contributors!
+      <p>
+        <em>web design based on <a href="https://github.com/hughsk">@hughhsk</a> and edited by <a href="https://github.com/daviddao">@daviddao</a></em>
+      </p>
+    </section>
+  </main>
+  <script src="https://wzrd.in/bundle/bio-pv@1.8.1"></script>
+  
+  
+<!--   <canvas id="grid"></canvas>
+ -->
+<div id="demo"></div>
+<style>
+#demo {
+  position:fixed;
+  left:30%;
+  top:0px;
+  bottom:0px;
+  right:0px;
+  overflow:hidden;
+}
+
+.static-label {
+  position:absolute;
+  background: #0000;
+  text-align:right;
+  z-index: 1;
+  font-weight:bold;
+  width:290px;
+}
+
+</style>
+
+<script charset="utf-8" src="http://biojs.github.io/next/build/bundle.min.js" defer="defer" async="async"></script>
+<!--   <script charset="utf-8" src="/build/splash.min.js" defer="defer" async="async"></script>
+ -->  
+<!-- Example Bio PV of Molecule 4008, Crispr CAS9 on DNA -->
+<script>
+var pv = require("bio-pv");
+var parent = document.getElementById('demo')
+var staticLabel = document.createElement('div')
+staticLabel.innerHTML = 'CAS9 rendered with <a>bio-pv</a>'
+staticLabel.className = 'static-label'
+parent.appendChild(staticLabel)
+
+var viewer = pv.Viewer(parent, {
+  quality: 'medium',
+  width: 'auto',
+  height: 'auto',
+  antialias: true,
+  outline: true,
+  slabMode: 'auto'
+});
+
+function load(name, pdbId) {
+
+  pv.io.fetchPdb('http://www.rcsb.org/pdb/files/' + pdbId + '.pdb', function(structure) {
+    // render everything as helix/sheet/coil cartoon, coloring by secondary 
+    // structure succession
+    var go = viewer.cartoon('structure', structure, {
+      color: pv.color.ssSuccession(),
+      showRelated: '1',
+    });
+
+    // find camera orientation such that the molecules biggest extents are 
+    // aligned to the screen plane.
+    var rotation = pv.viewpoint.principalAxes(go);
+    viewer.setRotation(rotation)
+    viewer.spin(true)
+
+    // adapt zoom level to contain the whole structure
+    viewer.autoZoom()
+  });
+}
+
+
+// load default
+load('CAS9', '4oo8')
+//load('BioJS','1ZQA')
+
+// tell viewer to resize when window size changes.
+window.onresize = function(event) {
+  viewer.fitParent()
+}
+</script>
+</body>
+</html>
